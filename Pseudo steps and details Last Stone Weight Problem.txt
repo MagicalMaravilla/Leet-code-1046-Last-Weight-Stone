@@ -1,0 +1,51 @@
+The problem of Last Stone Weight goes into a scenario where we have a collection of stones with different weights. 
+The task is to iteratively smash the two heaviest stones together until there's only one stone left, or non if the last two stones destroy each other completely. 
+The result should be the weight of the last remaining stone, or zero if all stones are smashed into dust. 
+This problem will show an understanding priority queues or heaps, as well as the implementation of sorting algorithms in  a dynamic context.
+
+Real world use cases of this problem:
+
+Resource Allocation in Computing: 
+If tasks were assigned by weights, based on their importance or required computational resources. The smashing of two stones together can be similar to combining tasks other
+resources, where the weight of the outcome (no matter if it is a combined task, or the remaining resources after a merge) needs to be re-evaluated and reassigned in a dynamic and efficient manner. 
+This models real-time decision-making in system resource allocations.
+
+Other real world uses: Game development, finanical portfolio optimization, educational grouping, and enviornmental science.
+
+
+
+The core of this problem involves maintaining a collection of stones in a way that allows us to efficently find and remove the two heaviest stones, smash them together, 
+and insert the result back into the collection if there is a remainder. 
+A priorty queue or heap would be the best data structure for this problem because it can efficiently maintain the stones in sorted order by weight.
+
+Pseudo code:
+1. Initialize a max-heap to store the weights of all stones.
+2. Populate the heap with the weights of all stones.
+3. While the heal contains more than one stone:
+    a. Extract the two heaviest stones from the heap.
+    b. If the weights of the two stones are equal:
+        -They destroy each other; do not add anything back to the heap.
+    c. Else:
+        - Calculate the difference in weight between the two stones.
+        - Insert the difference back into the heap as it represents the new stones formed.
+4. If the heap is empty:
+    - Return 0 (Showing all stones have been smashed completely smashed.)
+5. Else:
+    - Return the weight of the last remaining stone.
+
+
+
+Step1 and 2:
+Max-Heap: A max-heap is a binary tree where the parent node is always greater than or equal to the values of its children. 
+This property makes it good for the purpose because the heaviest stone will always be at the root, allowing us to efficiently extract the two heaviest stones.
+
+Step 3:
+While Loop:
+The condition for continuing the simulation is having more than 1 stone int he heap. This will make sure the process runs as long as there are stones to smash.
+
+Extracting Stones:
+Remove the two heaviest stones from the heap. Given our max-heap property, these operations will give us the stones with the maximum weights.
+
+Smashing Logic:
+    Equal Weights: If the stones have equal weights, they both get destroyed, and nothing gets added back to the heap.
+    Remaining Stone: If there's a stone left, its weight is the result of the problem. This situation happens when the heap has exactly 1 item left.
